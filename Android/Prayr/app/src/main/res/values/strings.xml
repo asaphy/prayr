@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">Prayr</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="textview">Asaph is learning android!</string>
     <string name="action_settings">Settings</string>
+    <string name="button">Update TextView</string>
 
 </resources>
