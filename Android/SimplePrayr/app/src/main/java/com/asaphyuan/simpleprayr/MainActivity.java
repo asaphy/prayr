@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 
 import com.asaphyuan.simpleprayr.db.TaskContract;
@@ -23,6 +26,7 @@ public class MainActivity extends Activity {
     private ArrayAdapter<String> itemsAdapter;
     private ListView lvItems;
     private TaskDBHelper helper;
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,27 +61,52 @@ public class MainActivity extends Activity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapter,
-                                                   View v, int pos, long id) {
-                        //remove from DB
-                        //String task = ((TextView) v.findViewById(R.id.lvItems)).getText().toString();
-                        String task = (String)lvItems.getItemAtPosition(pos);
+                                                   View v, final int pos, long id) {
 
-                        String sql = String.format("DELETE FROM %s WHERE %s = '%s'",
-                                TaskContract.TABLE,
-                                TaskContract.Columns.REQUEST,
-                                task);
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+
+                        // set title
+                        alertDialogBuilder.setTitle("Confirm Delete");
+
+                        // set dialog message
+                        alertDialogBuilder
+                                .setMessage("Delete this request?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //remove from DB
+                                        String task = (String) lvItems.getItemAtPosition(pos);
+
+                                        String sql = String.format("DELETE FROM %s WHERE %s = '%s'",
+                                                TaskContract.TABLE,
+                                                TaskContract.Columns.REQUEST,
+                                                task);
 
 
-                        helper = new TaskDBHelper(MainActivity.this);
-                        SQLiteDatabase sqlDB = helper.getWritableDatabase();
-                        sqlDB.execSQL(sql);
+                                        helper = new TaskDBHelper(MainActivity.this);
+                                        SQLiteDatabase sqlDB = helper.getWritableDatabase();
+                                        sqlDB.execSQL(sql);
 
-                        // Remove the item within array at position
-                        items.remove(pos);
+                                        // Remove the item within array at position
+                                        items.remove(pos);
 
-                        // Refresh the adapter
-                        itemsAdapter.notifyDataSetChanged();
+                                        // Refresh the adapter
+                                        itemsAdapter.notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // if this button is clicked, just close
+                                        // the dialog box and do nothing
+                                        dialog.cancel();
+                                    }
+                                });
 
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+
+                        // show it
+                        alertDialog.show();
                     }
 
                 });
@@ -100,5 +129,8 @@ public class MainActivity extends Activity {
 
         itemsAdapter.add(itemText);
         etNewItem.setText("");
+        InputMethodManager imm = (InputMethodManager)getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(etNewItem.getWindowToken(), 0);
     }
 }
