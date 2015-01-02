@@ -74,3 +74,5 @@ Add this method
     public void onClick(View view) {
       mainTextView.setText("Button pressed!");
     }
+//How to make navigation
+http://developer.android.com/training/implementing-navigation/nav-drawer.html
