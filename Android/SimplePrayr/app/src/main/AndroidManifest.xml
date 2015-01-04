@@ -17,9 +17,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name=".MainApplication">
         <activity
-            android:name=".MainActivity"
+            android:name="com.asaphyuan.simpleprayr.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/splashScreenTheme" >
             <intent-filter>
@@ -52,6 +53,8 @@
                 <category android:name="com.asaphyuan.simpleprayr" />
             </intent-filter>
         </receiver>
+        <meta-data android:name="com.parse.push.notification_icon"
+            android:resource="@drawable/ic_launcher"/>
     </application>
 
 </manifest>

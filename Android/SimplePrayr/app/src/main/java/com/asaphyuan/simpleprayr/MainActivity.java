@@ -50,8 +50,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Parse.initialize(this, "r66jQM07dJ9pFjjuRrrhWJcsJdg7KpGlzHkgKEdQ", "iX6EQbU8QzmYqBGqTD9r7FHuifrUGRmztUBm3XhF");
-
+//        Parse.initialize(this, "r66jQM07dJ9pFjjuRrrhWJcsJdg7KpGlzHkgKEdQ", "iX6EQbU8QzmYqBGqTD9r7FHuifrUGRmztUBm3XhF");
 //        //Enable to receive push
 //        PushService.setDefaultPushCallback(this, RespondToPushActivity.class);
 //        ParseInstallation pi = ParseInstallation.getCurrentInstallation();
