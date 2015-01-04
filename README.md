@@ -1,3 +1,19 @@
+To Dos:  
+Navigation  
+Login  
+Push Notifications to pray  
+Push notifications from FB friends you're subscribed to
+Pages:  
+  Favorite Verses  
+  Answered Prayers  
+  Promises from the Bible  
+  Guide to Prayer  
+  Settings  
+  Logout  
+
+
+
+
 http://www.raywenderlich.com/78576/android-tutorial-for-beginners-part-2
 
 

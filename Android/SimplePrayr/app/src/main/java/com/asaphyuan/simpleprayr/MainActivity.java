@@ -17,6 +17,7 @@ import android.widget.*;
 
 import com.asaphyuan.simpleprayr.db.TaskContract;
 import com.asaphyuan.simpleprayr.db.TaskDBHelper;
+import com.parse.Parse;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Parse.initialize(this, "r66jQM07dJ9pFjjuRrrhWJcsJdg7KpGlzHkgKEdQ", "iX6EQbU8QzmYqBGqTD9r7FHuifrUGRmztUBm3XhF");
+
         // ADD HERE
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
