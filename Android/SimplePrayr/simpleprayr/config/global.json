@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Prayr": {
+            "applicationId": "r66jQM07dJ9pFjjuRrrhWJcsJdg7KpGlzHkgKEdQ", 
+            "masterKey": "CvCtLq2rrL1aRIGHQt1tDYUqL8yswjPuIffoNesZ"
+        }, 
+        "_default": {
+            "link": "Prayr"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.3"
+    }
+}

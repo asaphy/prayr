@@ -17,9 +17,15 @@ import android.widget.*;
 
 import com.asaphyuan.simpleprayr.db.TaskContract;
 import com.asaphyuan.simpleprayr.db.TaskDBHelper;
+
+import com.parse.FunctionCallback;
 import com.parse.Parse;
+import com.parse.ParseCloud;
+import com.parse.ParseException;
+import com.parse.PushService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class MainActivity extends Activity {
@@ -56,6 +62,14 @@ public class MainActivity extends Activity {
             itemsAdapter.add(tmp);
         }
         setupListViewListener();
+
+        ParseCloud.callFunctionInBackground("hello", new HashMap<String, Object>(), new FunctionCallback<String>() {
+            public void done(String result, ParseException e) {
+                if (e == null) {
+                    Log.d("MainActivity cursor", result);
+                }
+            }
+        });
     }
 
     // Attaches a click listener to the listview

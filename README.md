@@ -10,6 +10,8 @@ Pages:
   Guide to Prayer  
   Settings  
   Logout  
+https://www.parse.com/docs/cloud_code_guide  
+
 
 
 
