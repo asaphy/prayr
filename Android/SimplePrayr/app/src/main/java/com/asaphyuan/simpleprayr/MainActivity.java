@@ -6,23 +6,34 @@ import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.asaphyuan.simpleprayr.db.TaskContract;
 import com.asaphyuan.simpleprayr.db.TaskDBHelper;
 
 import com.parse.FunctionCallback;
 import com.parse.Parse;
+import com.parse.ParseACL;
+import com.parse.ParseAnalytics;
 import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseInstallation;
+import com.parse.ParsePushBroadcastReceiver;
 import com.parse.PushService;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +51,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Parse.initialize(this, "r66jQM07dJ9pFjjuRrrhWJcsJdg7KpGlzHkgKEdQ", "iX6EQbU8QzmYqBGqTD9r7FHuifrUGRmztUBm3XhF");
+
+//        //Enable to receive push
+//        PushService.setDefaultPushCallback(this, RespondToPushActivity.class);
+//        ParseInstallation pi = ParseInstallation.getCurrentInstallation();
+//
+//        //Register a channel to test push channels
+//        Context ctx = this.getApplicationContext();
+//        PushService.subscribe(ctx, "ch1", RespondToPushActivity.class);
+
 
         // ADD HERE
         lvItems = (ListView) findViewById(R.id.lvItems);
